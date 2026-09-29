@@ -1,0 +1,37 @@
+.pc-card-wrapper {
+  --sunpillar-1: rgba(148, 163, 184, 0.2);
+  --sunpillar-2: rgba(59, 130, 246, 0.3);
+  --sunpillar-3: rgba(30, 41, 59, 0.4);
+  --sunpillar-4: rgba(96, 165, 250, 0.25);
+  --sunpillar-5: rgba(15, 23, 42, 0.5);
+  --sunpillar-6: rgba(226, 232, 240, 0.15);
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+  --rotate-x: 0deg;
+  --rotate-y: 0deg;
+  --behind-glow-color: rgba(37, 99, 235, 0.35);
+  --inner-gradient: linear-gradient(145deg, rgba(15, 23, 42, .9), rgba(30, 41, 59, .7));
+  width: min(100%, 350px);
+  perspective: 900px;
+  position: relative;
+}
+.pc-behind { position: absolute; inset: 8%; background: var(--behind-glow-color); filter: blur(55px); opacity: .65; border-radius: 50%; }
+.pc-card { height: 500px; position: relative; z-index: 1; overflow: hidden; border: 1px solid rgba(255, 255, 255, .12); border-radius: 24px; background: #0f172a; box-shadow: 0 28px 70px rgba(2, 6, 23, .65), 0 0 0 1px rgba(148, 163, 184, .04); transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y)); transition: transform .25s ease, box-shadow .25s ease; }
+.pc-card-wrapper:hover .pc-card { box-shadow: 0 35px 85px rgba(2, 6, 23, .78), 0 0 32px rgba(37, 99, 235, .18); }
+.pc-inside { position: absolute; inset: 0; overflow: hidden; border-radius: inherit; background: var(--inner-gradient); }
+.pc-avatar { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; opacity: .9; mix-blend-mode: luminosity; }
+.pc-avatar::after { content: ''; position: absolute; inset: 0; }
+.pc-shine { position: absolute; inset: -15%; z-index: 2; opacity: .25; mix-blend-mode: soft-light; background: repeating-linear-gradient(115deg, var(--sunpillar-1) 0 12%, var(--sunpillar-2) 12% 25%, var(--sunpillar-3) 25% 39%, var(--sunpillar-4) 39% 53%, var(--sunpillar-5) 53% 72%, var(--sunpillar-6) 72% 100%); background-position: var(--pointer-x) var(--pointer-y); transition: background-position .25s ease; pointer-events: none; }
+.pc-glare { position: absolute; inset: 0; z-index: 3; background: radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(255, 255, 255, .15), transparent 42%); pointer-events: none; }
+.pc-details { position: absolute; z-index: 4; top: 28px; right: 22px; left: 22px; text-align: right; }
+.pc-details h3 { margin: 0; color: #fff; font-size: 23px; font-weight: 700; }
+.pc-details p { margin: 7px 0 0; color: #000; font-size: 13px; font-weight: 700; line-height: 1.5; }
+.pc-user-info { position: absolute; z-index: 5; right: 16px; bottom: 16px; left: 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 11px; border: 1px solid rgba(255, 255, 255, .12); border-radius: 15px; background: rgba(15, 23, 42, .72); backdrop-filter: blur(18px); }
+.pc-user-details { display: flex; align-items: center; gap: 9px; min-width: 0; text-align: right; }
+.pc-user-details img { width: 37px; height: 37px; flex: 0 0 auto; border-radius: 50%; object-fit: cover; }
+.pc-user-details strong, .pc-user-details span { display: block; white-space: nowrap; }
+.pc-user-details strong { color: #f8fafc; font-size: 12px; font-weight: 600; }
+.pc-user-details span { margin-top: 3px; color: #94a3b8; font-size: 11px; }
+.pc-contact-btn { padding: 9px 12px; color: #dbeafe; border: 1px solid rgba(96, 165, 250, .4); border-radius: 9px; background: rgba(37, 99, 235, .2); font-size: 11px; font-weight: 600; cursor: pointer; transition: background .2s, transform .2s; white-space: nowrap; }
+.pc-contact-btn:hover { background: rgba(37, 99, 235, .38); transform: translateY(-1px); }
+@media (max-width: 480px) { .pc-card { height: 440px; } .pc-details h3 { font-size: 20px; } .pc-details p { font-size: 12px; } }
