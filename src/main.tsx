@@ -1,38 +1,43 @@
-import { ArrowUpRight, Menu, X } from 'lucide-react'
+import {
+  ArrowRight,
+  Check,
+  ChevronDown,
+  Clock3,
+  Gavel,
+  Menu,
+  Scale,
+  ShieldCheck,
+  X,
+} from 'lucide-react'
 import { useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import './style.css'
 
-type Project = {
-  number: string
-  title: string
-  description: string
-  tags: string[]
-  className: string
-}
-
-const projects: Project[] = [
+const practiceAreas = [
   {
+    icon: ShieldCheck,
     number: '01',
-    title: 'Ritual',
-    description: 'A quiet, considered wellness experience built around daily rituals.',
-    tags: ['Product design', 'Development'],
-    className: 'project-card--purple',
+    title: 'Personal injury',
+    description: 'Serious advocacy for the moments that change everything. We pursue the recovery you deserve.',
   },
   {
+    icon: Gavel,
     number: '02',
-    title: 'Northstar',
-    description: 'Making complex financial decisions feel clear, human, and actionable.',
-    tags: ['Brand identity', 'Web design'],
-    className: 'project-card--cream',
+    title: 'Business & disputes',
+    description: 'Practical counsel and decisive representation when your company needs a steady hand.',
   },
   {
+    icon: Scale,
     number: '03',
-    title: 'Folio OS',
-    description: 'A flexible system for independent creators to share their best work.',
-    tags: ['Design system', 'Strategy'],
-    className: 'project-card--blue',
+    title: 'Family law',
+    description: 'Clear guidance through difficult transitions, with your future and your family at the center.',
   },
+]
+
+const steps = [
+  ['01', 'Tell us what happened', 'Start with a confidential conversation. No jargon, no pressure, no obligation.'],
+  ['02', 'Get a clear strategy', 'We explain your options in plain English and recommend the strongest path forward.'],
+  ['03', 'Move forward with confidence', 'Our team handles the details and stays close from first call to final resolution.'],
 ]
 
 function App() {
@@ -43,96 +48,118 @@ function App() {
   return (
     <div className="site-shell">
       <header className="site-header">
-        <a className="wordmark" href="#top" onClick={closeMenu} aria-label="Home">
-          <span className="wordmark-mark" aria-hidden="true">✳</span>
-          shahar<span className="wordmark-dot">.</span>
+        <a className="brand" href="#top" onClick={closeMenu}>
+          <span className="brand-mark"><Scale size={19} strokeWidth={1.6} /></span>
+          <span><strong>HARTWELL</strong><small>ATTORNEYS AT LAW</small></span>
         </a>
         <button className="menu-toggle" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen}>
-          {menuOpen ? <X size={20} /> : <Menu size={20} />}
+          {menuOpen ? <X size={21} /> : <Menu size={21} />}
         </button>
         <nav className={menuOpen ? 'main-nav main-nav--open' : 'main-nav'} aria-label="Main navigation">
-          <a href="#work" onClick={closeMenu}>Work</a>
-          <a href="#about" onClick={closeMenu}>About</a>
-          <a href="#contact" onClick={closeMenu}>Contact</a>
+          <a href="#practice" onClick={closeMenu}>Practice areas</a>
+          <a href="#approach" onClick={closeMenu}>Our approach</a>
+          <a href="#about" onClick={closeMenu}>About us</a>
         </nav>
-        <a className="header-cta" href="mailto:hello@shahar.design">Let's talk <ArrowUpRight size={15} /></a>
+        <a className="header-cta" href="#contact">Schedule a consultation <ArrowRight size={16} /></a>
       </header>
 
       <main id="top">
-        <section className="hero section-grid">
-          <p className="eyebrow reveal">Independent designer & developer <span className="status-dot" /> Available for select projects</p>
-          <div className="hero-copy reveal">
-            <h1>Digital experiences<br /><em>with a point of view.</em></h1>
-            <p className="hero-intro">I’m Shahar — a multidisciplinary designer and developer helping ambitious people turn good ideas into memorable digital products.</p>
-            <a className="text-link" href="#work">Explore selected work <ArrowUpRight size={17} /></a>
+        <section className="hero">
+          <div className="hero-content">
+            <p className="eyebrow"><span className="eyebrow-line" /> Trusted counsel. Proven results.</p>
+            <h1>When it matters, <em>we stand with you.</em></h1>
+            <p className="hero-intro">HARTWELL is a modern law firm for people and businesses facing consequential moments. We bring clarity to complexity and resolve to every case.</p>
+            <div className="hero-actions">
+              <a className="button button--gold" href="#contact">Book a confidential call <ArrowRight size={16} /></a>
+              <a className="subtle-link" href="#practice">Explore our practice <ChevronDown size={15} /></a>
+            </div>
           </div>
-          <div className="hero-art" aria-label="Abstract decorative graphic">
-            <div className="orb orb--one" />
-            <div className="orb orb--two" />
-            <div className="orb orb--three" />
-            <span className="hero-art-label">Scroll to explore<br />↓</span>
+          <div className="hero-art" aria-label="Abstract scales of justice illustration">
+            <div className="art-circle art-circle--outer" />
+            <div className="art-circle art-circle--inner" />
+            <div className="scale-art">
+              <div className="scale-pillar" />
+              <div className="scale-beam" />
+              <div className="scale-pan scale-pan--left"><span /></div>
+              <div className="scale-pan scale-pan--right"><span /></div>
+            </div>
+            <p className="art-caption">Est. 1998 <span /> New York · London</p>
+          </div>
+          <div className="hero-footer">
+            <span>Scroll to explore</span><span className="hero-scroll-line" />
           </div>
         </section>
 
-        <div className="ticker" aria-label="Services">
-          <div className="ticker-track">Brand strategy <span>✳</span> Digital design <span>✳</span> Creative development <span>✳</span> Brand strategy <span>✳</span> Digital design <span>✳</span> Creative development <span>✳</span></div>
-        </div>
+        <section className="trust-bar" aria-label="Firm highlights">
+          <div><strong>25+</strong><span>Years of practice</span></div>
+          <div><strong>98%</strong><span>Cases resolved favorably</span></div>
+          <div><strong>4.9/5</strong><span>Client satisfaction</span></div>
+          <p>Recognized by <b>Best Lawyers</b> · Super Lawyers · Chambers</p>
+        </section>
 
-        <section className="work-section content-section" id="work">
-          <div className="section-heading reveal">
-            <p className="eyebrow">Selected work</p>
-            <h2>A few things I’ve<br /><em>helped bring to life.</em></h2>
-            <p className="section-note">A selection of recent collaborations across brand, product, and the web.</p>
+        <section className="section practice-section" id="practice">
+          <div className="section-intro">
+            <p className="eyebrow"><span className="eyebrow-line" /> What we do</p>
+            <h2>Focused expertise.<br /><em>Personal attention.</em></h2>
+            <p>Big-firm experience without the big-firm distance. We focus on the areas where we can make the greatest difference for our clients.</p>
           </div>
-          <div className="projects-grid">
-            {projects.map((project) => (
-              <a className={`project-card ${project.className} reveal`} href="#contact" key={project.number}>
-                <div className="project-visual">
-                  <span className="project-number">{project.number}</span>
-                  <span className="project-arrow"><ArrowUpRight size={21} /></span>
-                  <div className="project-shape" aria-hidden="true" />
-                </div>
-                <div className="project-meta">
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-                  <div className="tag-list">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-                </div>
+          <div className="practice-grid">
+            {practiceAreas.map(({ icon: Icon, number, title, description }) => (
+              <a className="practice-card" href="#contact" key={number}>
+                <div className="card-top"><span>{number}</span><Icon size={28} strokeWidth={1.4} /></div>
+                <h3>{title}</h3>
+                <p>{description}</p>
+                <span className="card-link">Learn more <ArrowRight size={15} /></span>
               </a>
             ))}
           </div>
         </section>
 
-        <section className="about-section content-section section-grid" id="about">
-          <div className="about-statement reveal">
-            <p className="eyebrow">A little about me</p>
-            <h2>Curious by default,<br /><em>intentional by design.</em></h2>
-          </div>
-          <div className="about-copy reveal">
-            <p>I care about the space where thoughtful design meets useful technology. My practice is equal parts listening, thinking, making, and refining until every detail feels like it belongs.</p>
-            <p>When I’m not designing, you’ll find me collecting old magazines, learning a new recipe, or walking without a destination.</p>
-            <a className="text-link" href="mailto:hello@shahar.design">More about my approach <ArrowUpRight size={17} /></a>
+        <section className="approach-section" id="approach">
+          <div className="section approach-content">
+            <div className="approach-heading">
+              <p className="eyebrow"><span className="eyebrow-line" /> The Hartwell way</p>
+              <h2>Law is complex.<br /><em>Our advice isn't.</em></h2>
+            </div>
+            <div className="steps">
+              {steps.map(([number, title, description]) => (
+                <div className="step" key={number}>
+                  <span className="step-number">{number}</span>
+                  <div><h3>{title}</h3><p>{description}</p></div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
-        <section className="contact-section content-section" id="contact">
-          <div className="contact-card reveal">
-            <p className="eyebrow">Have a project in mind?</p>
-            <h2>Let’s make something<br /><em>worth remembering.</em></h2>
-            <a className="button button--light" href="mailto:hello@shahar.design">Start a conversation <ArrowUpRight size={17} /></a>
-            <div className="contact-decoration" aria-hidden="true">✳</div>
+        <section className="quote-section section" id="about">
+          <p className="quote-mark">“</p>
+          <blockquote>They gave us more than legal advice. They gave us a way forward when we couldn't see one.</blockquote>
+          <p className="quote-source">— Sarah M. <span>·</span> Hartwell client</p>
+        </section>
+
+        <section className="contact-section section" id="contact">
+          <div className="contact-copy">
+            <p className="eyebrow"><span className="eyebrow-line" /> Start with a conversation</p>
+            <h2>Let's find<br /><em>your way forward.</em></h2>
+            <p>Tell us a little about your situation. Everything you share is confidential, and your first conversation is always on us.</p>
           </div>
+          <form className="contact-form" onSubmit={(event) => event.preventDefault()}>
+            <label>Name<input type="text" placeholder="Your full name" required /></label>
+            <label>Email<input type="email" placeholder="you@example.com" required /></label>
+            <label>How can we help?<textarea placeholder="A brief overview of your situation" rows={3} required /></label>
+            <button className="button button--gold" type="submit">Request a consultation <ArrowRight size={16} /></button>
+            <p className="form-note"><Clock3 size={14} /> We typically respond within one business day.</p>
+          </form>
         </section>
       </main>
 
       <footer className="site-footer">
-        <a className="wordmark" href="#top"><span className="wordmark-mark" aria-hidden="true">✳</span> shahar<span className="wordmark-dot">.</span></a>
-        <p>© 2025 Shahar. Built with intention.</p>
-        <div className="social-links">
-          <a href="https://github.com" target="_blank" rel="noreferrer" aria-label="GitHub">GH</a>
-          <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn">in</a>
-          <a href="mailto:hello@shahar.design" aria-label="Email"><ArrowUpRight size={18} /></a>
-        </div>
+        <a className="brand" href="#top"><span className="brand-mark"><Scale size={19} strokeWidth={1.6} /></span><span><strong>HARTWELL</strong><small>ATTORNEYS AT LAW</small></span></a>
+        <p>© 2025 Hartwell Law. All rights reserved.</p>
+        <div><a href="#contact">Privacy</a><a href="#contact">Terms</a><a href="#contact">Contact</a></div>
       </footer>
+      <div className="mobile-safe" aria-hidden="true"><Check size={13} /> Confidential consultations available</div>
     </div>
   )
 }
